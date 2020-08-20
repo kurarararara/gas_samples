@@ -12,25 +12,25 @@
 function fetch_qiita_articles() {
   const AUTHORS = ["kurarararara"]; // LGTM集計するQiitaアカウントを指定
   const START_DATE = new Date(2020, 4, 1, 0, 0, 0); // 集計開始日（これより前の記事は集計しない）
-  const SPREADSHEET_ID = "";
-  const SHEET_NAME = "";
+  const SPREADSHEET_ID = ""; // GoogleスプレッドシートのID
+  const SHEET_NAME = ""; // Googleスプレッドシートのシート名
 
   let sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
-  sheet.getRange(1, 2, sheet.getMaxRows(), 5).clearContent(); // 常に最新の内容を反映させるため一旦全ての内容をクリア
-  
-  // Qiitaの記事情報を読み込んでパース
-  let articles = [];
-  AUTHORS.forEach(function(author){
-    let response = UrlFetchApp.fetch("https://qiita.com/api/v2/users/" + author + "/items");
-    JSON.parse(response).forEach(function(json, index){
-      let article_date = Date.parse(json["created_at"]);
-      if (article_date >= START_DATE) {
-        let article = [index + 1, author, json["likes_count"], json["title"], json["url"], json["created_at"]];
-        articles.push(article);
-      }
-    })
-  })
+  sheet.getRange(2, 1, sheet.getMaxRows(), 6).clearContent();
 
-  // スプレッドシートに結果を一括で書き込み
-  sheet.getRange(1, 2, articles.length, 5).setValues(articles);
+  let articles = AUTHORS
+    .map(function(author) {
+        return UrlFetchApp.fetch("https://qiita.com/api/v2/users/" + author + "/items");
+    })
+    .map(function(response) {
+        return JSON.parse(response);
+    })
+    .flat()
+    .filter(function(json) {
+        return Date.parse(json["created_at"]) >= START_DATE;
+    })
+    .map(function(json, index) {
+        return [index + 1, json["user"]["id"], json["likes_count"], json["title"], json["url"], json["created_at"]];
+    })
+  sheet.getRange(2, 1, articles.length, 6).setValues(articles);
 }
