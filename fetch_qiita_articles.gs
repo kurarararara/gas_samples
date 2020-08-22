@@ -6,12 +6,6 @@
 //  Copyright © 2020 kurarararara All rights reserved.
 //
 
-/*
-このスクリプトは、Qiitaの投稿者、LGTM数、タイトル、URL、投稿日を収集するスクリプトです。
-どんなスプレッドシートを作るかは以下のURLで確認してください。
-https://bit.ly/3j1pRnZ (Qiita)
-*/
-
 function fetch_qiita_articles() {
   const AUTHORS = ["kurarararara"] // LGTM集計するQiitaアカウントを指定
   const START_DATE = new Date(2020, 4, 1, 0, 0, 0) // 集計開始日（これより前の記事は集計しない）
