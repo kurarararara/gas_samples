@@ -7,10 +7,10 @@
 //
 
 function fetch_qiita_articles() {
-  const AUTHORS = ["kurarararara"] // LGTM集計するQiitaアカウントを指定
-  const START_DATE = new Date(2020, 4, 1, 0, 0, 0) // 集計開始日（これより前の記事は集計しない）
-  const SPREADSHEET_ID = "" // GoogleスプレッドシートのID
-  const SHEET_NAME = "" // Googleスプレッドシートのシート名
+  const AUTHORS = ["kurarararara"] // Specify Qiita Account Name
+  const START_DATE = new Date(2020, 4, 1, 0, 0, 0) // Qiita aggregation start date
+  const SPREADSHEET_ID = "" // Specify Google Sheets's SpreadSheet ID
+  const SHEET_NAME = "" // Specify SpreadSheet Sheet Name
 
   const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME)
   
