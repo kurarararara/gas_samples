@@ -10,7 +10,7 @@ I'm making this style of updating a spreadsheet.
 
 | No. | Author | LGTM | Title | URL | Date |
 | ---- | ---- | ---- | ---- | ---- | ---- |
-| 1 | kurarararara | 10 | How to write GAS. | https://qiita.com/kurarararara/items/09c47ee536d8c0199034 | 2020.08.22 |
+| 1 | kurarararara | 10 | How to write GAS. | https://qiita.com/kurarararara/ | 2020.08.22 |
 
 ## License
 gas_samples is released under the MIT license. See [LICENSE](https://github.com/kurarararara/gas_samples/blob/master/LICENSE) for details.
